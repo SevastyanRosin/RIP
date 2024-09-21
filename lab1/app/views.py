@@ -84,6 +84,10 @@ def getUnitById(unit_id):
             return unit
 
 
+def getUnits():
+    return units
+
+
 def searchUnits(unit_name):
     res = []
 
@@ -104,7 +108,7 @@ def getOrderById(order_id):
 
 def index(request):
     name = request.GET.get("name", "")
-    units = searchUnits(name)
+    units = searchUnits(name) if name else getUnits()
     draft_order = getDraftOrder()
 
     context = {
