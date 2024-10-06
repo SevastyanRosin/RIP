@@ -1,7 +1,7 @@
 {% load static %}
 
 
-{% if "http://localhost:8000/orders/" in request.build_absolute_uri %}
+{% if "http://localhost:8000/orders/" in request.build_absolute_uri or "http://127.0.0.1:8000/orders/" in request.build_absolute_uri %}
 
     <div class="card w-100 mb5">
          <div class="row g-0">
@@ -31,18 +31,29 @@
 {% else %}
 
     <div class="card">
+
         <img src="{{ unit.image }}" class="unit-preview" alt=""/>
+
         <div class="card-body" >
+
             <div class="card-info">
+
                 <h5 class="card-title">{{ unit.name }}</h5>
+
                 <p class="card-text">Телефон: {{ unit.phone }}</p>
+
             </div>
+
             <div class="card-btns">
+
                 <a href="/units/{{ unit.id }}/" class="btn btn-primary center">
                     Открыть
                 </a>
+
             </div>
+
         </div>
+
     </div>
 
 {% endif %}

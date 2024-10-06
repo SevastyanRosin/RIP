@@ -4,16 +4,17 @@
 {% block content %}
     <main class="container">
 
-        <h3  class="text-center">Черновая заявка</h3>
+        <h3  class="text-center">Черновое приказ</h3>
 
-        <span>Статус: {{ order.status }}</span>
-        <span>Дата создания: {{ order.date_created }}</span>
+        <span>Название: {{ order.name }}</span>
+        <span>Описание: {{ order.description }}</span>
+        <span>Дата вступления в силу: {{ order.date }}</span>
 
         <h4 class="text-center">Подразделения</h4>
 
         <div class="cards-wrapper d-flex flex-column">
 
-            {% for unit in order.units %}
+            {% for unit in units %}
 
                 {% include "unit_card.html" %}
 
