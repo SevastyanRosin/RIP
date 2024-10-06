@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <main class="container">
+
+        <h3  class="text-center">Черновое лекарство</h3>
+
+         <div class="form-group">
+            <label class="form-label">Название</label>
+            {% if order.name %}
+                <input placeholder="Введите название" disabled type="text" class="form-control" style="width: 250px" value="{{ order.name }}">
+            {% else %}
+                <input placeholder="Введите название" disabled type="text" class="form-control" style="width: 250px">
+            {% endif %}
+        </div>
+
+         <div class="form-group">
+            <label class="form-label">Описание</label>
+            {% if order.description %}
+                <input placeholder="Введите описание" disabled type="text" class="form-control" style="width: 250px" value="{{ order.description }}">
+            {% else %}
+                <input placeholder="Введите описание" disabled type="text" class="form-control" style="width: 250px">
+            {% endif %}
+        </div>
+
+         <div class="form-group">
+            <label class="form-label">Дата вступления в силу</label>
+            {% if order.date %}
+                <input placeholder="Введите дату" disabled type="text" class="form-control" style="width: 250px" value="{{ order.date }}">
+            {% else %}
+                <input placeholder="Введите дату" disabled type="text" class="form-control" style="width: 250px">
+            {% endif %}
+        </div>
+
+        <form method="post" action="{% url 'delete_order' order.id %}">
+            {% csrf_token %}
+                <button class="btn btn-danger delete-draft-order-btn" type="submit">
+                    Удалить
+                </button>
+            </a>
+        </form>
+
+        <h4 class="text-center">Подразделения</h4>
+
+        <div class="cards-wrapper d-flex flex-column">
+
+            {% for unit in order.get_units %}
+
+                {% include "unit_card.html" %}
+
+            {% endfor %}
+
+        </div>
+
+    </main>
+{% endblock content %}
